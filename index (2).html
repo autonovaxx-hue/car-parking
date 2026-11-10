@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>KING RANK | Car Parking Multiplayer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d8ad55;--gold2:#f8df9a;--bg:#070707;--muted:#aaa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#fff;font-family:Inter,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.22;background-image:radial-gradient(#e8c879 1px,transparent 1px);background-size:90px 90px;animation:dust 22s linear infinite}
+@keyframes dust{to{background-position:180px -180px}}@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}@keyframes glow{50%{box-shadow:0 0 34px #d8ad5566,0 0 70px #d8ad5522}}@keyframes drift{50%{transform:translateY(-12px)}}
+header{height:78px;position:fixed;z-index:20;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:#050505c9;backdrop-filter:blur(16px);border-bottom:1px solid #d8ad552b}
+.brand{font:900 29px 'Barlow Condensed',sans-serif;letter-spacing:2px;color:var(--gold2);text-shadow:0 0 20px #d8ad5570}.brand span{color:white}
+nav{display:flex;gap:30px}nav a{color:#ddd;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:1.5px;transition:.25s}nav a:hover{color:var(--gold2)}
+.menu{display:none;color:var(--gold2);font-size:25px;background:none;border:0}
+.hero{min-height:760px;display:flex;align-items:center;position:relative;padding:130px 8% 90px;isolation:isolate;background:linear-gradient(90deg,#050505 0%,#050505e8 37%,#05050550 75%,#050505a8),linear-gradient(0deg,#070707 0%,transparent 35%),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=88') center 52%/cover}
+.hero:after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 72% 50%,#d8ad551c,transparent 45%)}
+.hero-content{max-width:670px;animation:rise 1s ease both}.eyebrow{color:var(--gold2);font-size:11px;letter-spacing:5px;font-weight:800}.hero h1{font:900 clamp(76px,12vw,150px)/.78 'Barlow Condensed',sans-serif;letter-spacing:-2px;margin:24px 0;color:var(--gold2);text-shadow:0 8px 35px #000}.hero h1 span{display:block;color:#fff;font-size:.58em;letter-spacing:5px;margin-top:18px}.hero p{color:#c9c9c9;letter-spacing:2px;font-size:12px;font-weight:700;margin:30px 0 35px}
+.gold-btn{border:0;cursor:pointer;padding:17px 34px;background:linear-gradient(110deg,#9d7029,#f6dc94,#b17d30);color:#090909;font-weight:900;letter-spacing:2px;font-size:12px;box-shadow:0 0 25px #d8ad5540;transition:.25s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:12px}
+.gold-btn:hover{transform:translateY(-3px);box-shadow:0 0 35px #e8c879aa,0 12px 28px #000}
+.hero-tag{position:absolute;right:7%;bottom:85px;color:#fff8;font:700 12px 'Barlow Condensed';letter-spacing:4px;writing-mode:vertical-rl}
+section{padding:100px 8%;position:relative}.section-kicker{font-size:10px;letter-spacing:4px;color:var(--gold);font-weight:800}.section-title{font:800 clamp(42px,6vw,70px)/.95 'Barlow Condensed';margin:13px 0 42px;letter-spacing:1px}.section-title span{color:var(--gold2)}
+.benefits{background:linear-gradient(180deg,#070707,#0c0c0c)}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.glass{background:linear-gradient(140deg,#ffffff0e,#ffffff03);border:1px solid #d8ad5540;backdrop-filter:blur(14px);padding:28px 23px;min-height:190px;transition:.3s}.glass:hover{transform:translateY(-8px);border-color:var(--gold2);box-shadow:0 12px 40px #d8ad551c}.ico{font-size:28px;color:var(--gold2);margin-bottom:23px}.glass h3{font:800 24px 'Barlow Condensed';letter-spacing:1px;margin:0 0 9px}.glass p{font-size:12px;color:#aaa;line-height:1.7;margin:0}
+.rank-section{background:linear-gradient(90deg,#080808ed,#080808d9),url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=85') center/cover fixed}
+.rank-wrap{max-width:900px;margin:auto}.step-label{font-size:10px;color:var(--gold2);letter-spacing:3px;font-weight:800;margin-bottom:14px}.game-options{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0 32px}
+.game-option{cursor:pointer;text-align:left;color:white;padding:25px;background:#111c;border:1px solid #d8ad5550;transition:.25s;position:relative;overflow:hidden}.game-option:hover,.game-option.active{border-color:var(--gold2);background:linear-gradient(120deg,#d8ad5522,#111c);box-shadow:0 0 30px #d8ad5520}.game-option small{color:var(--gold);font-size:10px;letter-spacing:2px}.game-option strong{display:block;font:800 34px 'Barlow Condensed';margin-top:8px}.game-option em{display:block;color:#aaa;font-style:normal;font-size:11px;margin-top:6px}.game-logo{width:104px;height:104px;object-fit:cover;display:block;border:1px solid #d8ad5570;box-shadow:0 8px 24px #0008;margin:0 0 17px}.game-option{min-height:260px}.game-option:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
+.form-panel{display:none;padding:34px;background:#0b0b0beF;border:1px solid #d8ad555c;box-shadow:0 0 55px #0008}.form-panel.show{display:block;animation:rise .5s ease}.form-panel h3{font:800 32px 'Barlow Condensed';margin:0 0 8px}.form-panel>p{font-size:12px;color:#aaa;line-height:1.7;margin-bottom:25px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:17px}.field{display:flex;flex-direction:column;gap:9px}.field.full{grid-column:1/-1}.field label{font-size:10px;letter-spacing:2px;color:var(--gold2);font-weight:800}.field input,.field select{background:#151515;border:1px solid #ffffff26;padding:15px;color:#fff;font:14px Inter;outline:none;border-radius:0}.field input:focus,.field select:focus{border-color:var(--gold)}.field input::placeholder{color:#666}.safe-note{font-size:10px!important;color:#888!important;margin:17px 0!important}.success{display:none;text-align:center;padding:30px 12px}.success.show{display:block;animation:rise .5s ease}.success .check{font-size:48px;color:var(--gold2)}.success h3{font:800 42px 'Barlow Condensed';margin:15px 0}.success p{color:#bbb;line-height:1.7;font-size:13px}
+.community{display:flex;align-items:center;justify-content:space-between;gap:30px;background:#0c0c0c;border-top:1px solid #d8ad5525;border-bottom:1px solid #d8ad5525}.community h2{font:800 42px 'Barlow Condensed';margin:8px 0}.community p{color:#999;font-size:12px}.count{font:900 58px 'Barlow Condensed';color:var(--gold2);text-shadow:0 0 25px #d8ad5560}.count-label{font-size:9px;color:#aaa;letter-spacing:3px;text-align:right}
+footer{padding:35px 8%;display:flex;align-items:center;justify-content:space-between;color:#777;font-size:10px;letter-spacing:1px}footer b{color:var(--gold2);font:800 20px 'Barlow Condensed';letter-spacing:2px}.disclaimer{font-size:9px;color:#555;text-align:center;padding:0 15px 25px}
+.reveal{opacity:0;transform:translateY(25px);transition:.8s}.reveal.visible{opacity:1;transform:none}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}nav{gap:15px}nav a{font-size:9px}}
+@media(max-width:600px){header{height:66px;padding:0 5%}.brand{font-size:25px}.menu{display:block}nav{display:none;position:absolute;top:65px;left:0;right:0;background:#080808f5;padding:22px;flex-direction:column}nav.open{display:flex}.hero{min-height:680px;padding:120px 7% 80px;background-position:60% center}.hero h1{font-size:90px}.hero-tag{display:none}section{padding:75px 7%}.cards{grid-template-columns:1fr 1fr;gap:10px}.glass{padding:20px 15px;min-height:175px}.glass h3{font-size:20px}.game-options{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.form-panel{padding:23px 18px}.community{align-items:flex-start;flex-direction:column}.count-label{text-align:left}footer{gap:15px;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#inicio" style="text-decoration:none">KING <span>RANK</span></a>
+  <button class="menu" id="menuBtn" aria-label="Abrir menú">☰</button>
+  <nav id="nav"><a href="#inicio">INICIO</a><a href="#beneficios">BENEFICIOS</a><a href="#king">KING</a><a href="#contacto">CONTACTO</a></nav>
+</header>
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="eyebrow">THE ELITE DRIVING CLUB</div>
+    <h1>KING<span>RANK</span></h1>
+    <p>THE ULTIMATE CAR PARKING EXPERIENCE</p>
+    <a class="gold-btn" href="#king">OBTENER KING <span>↗</span></a>
+  </div>
+  <div class="hero-tag">DRIVE DIFFERENT · RULE THE ROAD</div>
+</section>
+<section class="benefits" id="beneficios">
+  <div class="reveal"><div class="section-kicker">BEYOND ORDINARY</div><h2 class="section-title">THE KING <span>ADVANTAGE</span></h2></div>
+  <div class="cards">
+    <article class="glass reveal"><div class="ico">♛</div><h3>KING STATUS</h3><p>Destaca en la comunidad con una presencia digna de la élite.</p></article>
+    <article class="glass reveal"><div class="ico">✦</div><h3>VIP EXPERIENCE</h3><p>Una experiencia premium diseñada para jugadores que buscan más.</p></article>
+    <article class="glass reveal"><div class="ico">◈</div><h3>EXCLUSIVE PROFILE</h3><p>Haz que tu perfil refleje tu estilo y personalidad.</p></article>
+    <article class="glass reveal"><div class="ico">♜</div><h3>PREMIUM COMMUNITY</h3><p>Forma parte de un espacio creado para fans del motor.</p></article>
+  </div>
+</section>
+<section class="rank-section" id="king">
+  <div class="rank-wrap">
+    <div class="reveal"><div class="section-kicker">CHOOSE YOUR GAME</div><h2 class="section-title">SOLICITA TU RANGO <span>KING</span></h2><p style="color:#aaa;font-size:13px;line-height:1.8;max-width:620px">Selecciona tu versión de Car Parking Multiplayer para continuar con la solicitud de demostración.</p></div>
+    <div class="game-options reveal">
+      <button class="game-option" type="button" data-game="Car Parking Multiplayer 1" aria-label="Seleccionar Car Parking Multiplayer 1"><img class="game-logo" src="https://ogames.kz/img/icon-cpm1.jpg" alt="Logo de Car Parking Multiplayer" loading="lazy"><small>SELECT GAME / 01</small><strong>CAR PARKING<br>MULTIPLAYER 1</strong><em>La experiencia original</em></button>
+      <button class="game-option" type="button" data-game="Car Parking Multiplayer 2" aria-label="Seleccionar Car Parking Multiplayer 2"><img class="game-logo" src="https://ogames.kz/img/icon-cpm2.jpg" alt="Logo de Car Parking Multiplayer 2" loading="lazy"><small>SELECT GAME / 02</small><strong>CAR PARKING<br>MULTIPLAYER 2</strong><em>La nueva generación</em></button>
+    </div>
+    <div class="form-panel" id="formPanel">
+      <div id="formContent">
+        <div class="step-label" id="selectedGame">SELECTED GAME</div>
+        <h3>YOUR KING APPLICATION</h3>
+        <p>Completa tu ID de jugador y un correo de contacto. Por seguridad, KING RANK nunca te pedirá la contraseña de tu cuenta.</p>
+        <form id="kingForm">
+          <div class="fields">
+            <div class="field"><label for="playerId">ID DEL JUGADOR</label><input id="playerId" name="playerId" placeholder="Introduce tu ID de jugador" required maxlength="40"></div>
+            <div class="field"><label for="email">CORREO ELECTRÓNICO</label><input id="email" name="email" type="email" placeholder="tu@email.com" required maxlength="120"></div>
+            <div class="field full"><label for="username">NOMBRE DE USUARIO (OPCIONAL)</label><input id="username" name="username" placeholder="Tu nombre en el juego" maxlength="40"></div>
+          </div>
+          <p class="safe-note">SEGURIDAD · No introduzcas contraseñas, códigos de acceso ni tokens. Este formulario es una demostración visual y todavía no envía solicitudes.</p>
+          <button class="gold-btn" type="submit">SOLICITAR KING <span>↗</span></button>
+        </form>
+      </div>
+      <div class="success" id="success">
+        <div class="check">✧</div><h3>¡SOLICITUD PREPARADA!</h3>
+        <p>Nos pondremos en contacto contigo.<br><span style="color:#d8ad55">KING RANK · THE ELITE CLUB</span></p>
+        <button class="gold-btn" type="button" id="backBtn">VOLVER</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="community" id="contacto">
+  <div><div class="section-kicker">THE COMMUNITY</div><h2>BUILT FOR THE <span style="color:var(--gold2)">BOLD.</span></h2><p>Tu estilo. Tu coche. Tu rango.</p></div>
+  <div><div class="count" id="count">12,840+</div><div class="count-label">COMMUNITY COUNTER · DEMO</div></div>
+</section>
+</main>
+<footer><b>KING RANK</b><span>© 2026 KING RANK. ALL RIGHTS RESERVED.</span><span>DRIVE WITH STATUS.</span></footer>
+<div class="disclaimer">Fan-made project. Not affiliated with Car Parking Multiplayer.</div>
+<script>
+const menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('nav');
+menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const panel=document.getElementById('formPanel'),selected=document.getElementById('selectedGame');
+document.querySelectorAll('.game-option').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.game-option').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');selected.textContent='SELECTED GAME / '+btn.dataset.game.toUpperCase();
+  panel.classList.add('show');document.getElementById('formContent').style.display='block';document.getElementById('success').classList.remove('show');
+  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'center'}),80);
+}));
+document.getElementById('kingForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  // Demo only: no data is stored, sent, or transmitted.
+  document.getElementById('formContent').style.display='none';document.getElementById('success').classList.add('show');
+});
+document.getElementById('backBtn').addEventListener('click',()=>{
+  document.getElementById('success').classList.remove('show');document.getElementById('formContent').style.display='block';
+  document.getElementById('kingForm').reset();
+});
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body></html>
